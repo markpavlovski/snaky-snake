@@ -4,8 +4,6 @@ using System.Collections.Generic;
 public class Initialize : MonoBehaviour {
 
 
-	// Definitions
-
 	// General
 
 	public int maxIterations;
