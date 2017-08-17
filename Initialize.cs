@@ -20,7 +20,8 @@ public class Initialize : MonoBehaviour {
 	int counter = 0;
 	Vector3 newPositionOne;
 	Vector3 newPositionTwo;
-	Vector3 direction;
+	Vector3 directionOne;
+	Vector3 directionTwo;
 	List<Vector3> blockLocations = new List<Vector3> ();
 	List<MeshRenderer> blockMeshes = new List<MeshRenderer> ();
 	List<Vector3> killList = new List<Vector3> ();
@@ -65,7 +66,7 @@ public class Initialize : MonoBehaviour {
 
 	}
 
-	void CreateBlock( Vector3 position ){
+	void CreateBlockOne( Vector3 position ){
 
 		GameObject newBlock = new GameObject ();
 		newBlock.AddComponent<MeshFilter> ().mesh = blockMesh;
@@ -168,7 +169,7 @@ public class Initialize : MonoBehaviour {
 
 		// Generate a starting block
 		newPositionOne = new Vector3 (initialPositionOne.x + 0.5f, initialPositionOne.y + 0.5f, -1f);
-		CreateBlock (newPositionOne);
+		CreateBlockOne (newPositionOne);
 		counter++;
 
 
@@ -195,7 +196,7 @@ public class Initialize : MonoBehaviour {
 
 		// Generate a starting block
 		newPositionTwo = new Vector3 (initialPositionTwo.x + 0.5f, initialPositionTwo.y + 0.5f, -1f);
-		CreateBlock (newPositionTwo);
+		CreateBlockTwo (newPositionTwo);
 		counter++;
 
 
@@ -203,13 +204,13 @@ public class Initialize : MonoBehaviour {
 		if (initialOrientationTwo == 'U') {
 			moveTwo = moveUp;
 		} 
-		else if (initialOrientation == 'D') {
+		else if (initialOrientationTwo == 'D') {
 			moveTwo = moveDown;
 		} 
-		else if (initialOrientation == 'L') {
+		else if (initialOrientationTwo == 'L') {
 			moveTwo = moveLeft;
 		} 
-		else if (initialOrientation == 'R') {
+		else if (initialOrientationTwo == 'R') {
 			moveTwo = moveRight;
 		} 
 		else {
@@ -264,8 +265,8 @@ public class Initialize : MonoBehaviour {
 
 				else {
 
-					CreateBlock (newPositionOne);
-					CreateBlock (newPositionTwo);
+					CreateBlockOne (newPositionOne);
+					CreateBlockTwo (newPositionTwo);
 					counter++;
 
 				}
