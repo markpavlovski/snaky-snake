@@ -258,7 +258,19 @@ public class Initialize : MonoBehaviour {
 
 				if (KillCondition (newPositionOne) || KillCondition (newPositionTwo)) {
 
-					AssignFinalBlock (counter);
+
+					if (KillCondition(newPositionOne)) {
+
+						AssignFinalBlock (2 * counter - 5);
+
+					} 
+
+					if (KillCondition(newPositionTwo)){
+
+						AssignFinalBlock (2 * counter - 4);
+
+					}
+
 					counter = int.MaxValue;
 
 				} 
