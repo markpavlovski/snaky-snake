@@ -7,15 +7,19 @@ public class Initialize : MonoBehaviour {
 	// General
 
 	public int maxIterations;
-	public int score;
-	public char initialOrientation;
-	public Vector2 initialPosition;
+	public int scoreOne;
+	public int scoreTwo;
+	public char initialOrientationOne;
+	public char initialOrientationTwo;
+	public Vector2 initialPositionOne;
+	public Vector2 initialPositionTwo;
 	public float timeScale;
 
 	float timeStep;
 	float timeSinceLastStep;
 	int counter = 0;
-	Vector3 newPosition;
+	Vector3 newPositionOne;
+	Vector3 newPositionTwo;
 	Vector3 direction;
 	List<Vector3> blockLocations = new List<Vector3> ();
 	List<MeshRenderer> blockMeshes = new List<MeshRenderer> ();
@@ -25,13 +29,15 @@ public class Initialize : MonoBehaviour {
 	// Block Creation;
 
 	public Mesh blockMesh;
-	public Material blockMaterial;
+	public Material blockMaterialOne;
+	public Material blockMaterialTwo;
 	public Material lastMaterial;
 
 
 	// Directional Vectors
 
-	Vector3 move;
+	Vector3 moveOne;
+	Vector3 moveTwo;
 	Vector3 moveUp = new Vector3 (0f,1f,0f);
 	Vector3 moveDown = new Vector3 (0f,-1f,0f);
 	Vector3 moveLeft = new Vector3 (-1f,0f,0f);
@@ -63,14 +69,25 @@ public class Initialize : MonoBehaviour {
 
 		GameObject newBlock = new GameObject ();
 		newBlock.AddComponent<MeshFilter> ().mesh = blockMesh;
-		newBlock.AddComponent<MeshRenderer> ().material = blockMaterial;
+		newBlock.AddComponent<MeshRenderer> ().material = blockMaterialOne;
 		newBlock.GetComponent<Transform> ().localPosition = position;
 
 		blockMeshes.Add (newBlock.GetComponent<MeshRenderer> ());
 		blockLocations.Add (position);
 		killList.Add(position);
 
-		score = blockLocations.Count-1;
+	}
+
+	void CreateBlockTwo( Vector3 position ){
+
+		GameObject newBlock = new GameObject ();
+		newBlock.AddComponent<MeshFilter> ().mesh = blockMesh;
+		newBlock.AddComponent<MeshRenderer> ().material = blockMaterialTwo;
+		newBlock.GetComponent<Transform> ().localPosition = position;
+
+		blockMeshes.Add (newBlock.GetComponent<MeshRenderer> ());
+		blockLocations.Add (position);
+		killList.Add(position);
 
 	}
 
@@ -101,22 +118,41 @@ public class Initialize : MonoBehaviour {
 
 	}
 
-	Vector3 DirectionInput(){
+	Vector3 DirectionOneInput(){
 
 		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			move = moveUp;
+			moveOne = moveUp;
 		}
 		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			move = moveDown;
+			moveOne = moveDown;
 		}
 		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			move = moveLeft;
+			moveOne = moveLeft;
 		}
 		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			move = moveRight;
+			moveOne = moveRight;
 		}
 
-		return move;
+		return moveOne;
+
+	}
+
+	Vector3 DirectionTwoInput(){
+
+		if (Input.GetKeyDown (KeyCode.W)) {
+			moveTwo = moveUp;
+		}
+		if (Input.GetKeyDown (KeyCode.S)) {
+			moveTwo = moveDown;
+		}
+		if (Input.GetKeyDown (KeyCode.A)) {
+			moveTwo = moveLeft;
+		}
+		if (Input.GetKeyDown (KeyCode.D)) {
+			moveTwo = moveRight;
+		}
+
+		return moveTwo;
 
 	}
 
@@ -127,6 +163,61 @@ public class Initialize : MonoBehaviour {
 		}
 
 	}
+
+	void StartPlayerOne(){
+
+		// Generate a starting block
+		newPositionOne = new Vector3 (initialPositionOne.x + 0.5f, initialPositionOne.y + 0.5f, -1f);
+		CreateBlock (newPositionOne);
+		counter++;
+
+
+		// Set starting direction
+		if (initialOrientationOne == 'U') {
+			moveOne = moveUp;
+		} 
+		else if (initialOrientationOne == 'D') {
+			moveOne = moveDown;
+		} 
+		else if (initialOrientationOne == 'L') {
+			moveOne = moveLeft;
+		} 
+		else if (initialOrientationOne == 'R') {
+			moveOne = moveRight;
+		} 
+		else {
+			moveOne = moveDown; // default
+		}
+
+	}
+
+	void StartPlayerTwo(){
+
+		// Generate a starting block
+		newPositionTwo = new Vector3 (initialPositionTwo.x + 0.5f, initialPositionTwo.y + 0.5f, -1f);
+		CreateBlock (newPositionTwo);
+		counter++;
+
+
+		// Set starting direction
+		if (initialOrientationTwo == 'U') {
+			moveTwo = moveUp;
+		} 
+		else if (initialOrientation == 'D') {
+			moveTwo = moveDown;
+		} 
+		else if (initialOrientation == 'L') {
+			moveTwo = moveLeft;
+		} 
+		else if (initialOrientation == 'R') {
+			moveTwo = moveRight;
+		} 
+		else {
+			moveTwo = moveDown; // default
+		}
+
+	}
+
 
 
 
@@ -139,53 +230,42 @@ public class Initialize : MonoBehaviour {
 		// Set border kill zone
 		killList.AddRange (GenerateBorder ());
 
-		// Generate a starting block
-		newPosition = new Vector3 (initialPosition.x + 0.5f, initialPosition.y + 0.5f, -1f);
-		CreateBlock (newPosition);
+		// Initialize Players;
+		StartPlayerOne();
+		StartPlayerTwo();
+
 		counter++;
-
-
-		// Set starting direction
-		if (initialOrientation == 'U') {
-			move = moveUp;
-		} 
-		else if (initialOrientation == 'D') {
-			move = moveDown;
-		} 
-		else if (initialOrientation == 'L') {
-			move = moveLeft;
-		} 
-		else if (initialOrientation == 'R') {
-			move = moveRight;
-		} 
-		else {
-			move = moveDown; // default
-		}
 
 	}
 
 	void FixedUpdate(){
 
 		timeSinceLastStep += Time.deltaTime;
-		direction = DirectionInput ();
+
+		directionOne = DirectionOneInput ();
+		directionTwo = DirectionTwoInput ();
 
 
 		if (timeSinceLastStep >= timeStep) {
 
 			timeSinceLastStep -= timeStep;
-
+			
 			if (counter < maxIterations) {
 
-				newPosition += direction;
+				newPositionOne += directionOne;
+				newPositionTwo += directionTwo;
 
-				if (KillCondition (newPosition)) {
+				if (KillCondition (newPositionOne) || KillCondition (newPositionTwo)) {
 
 					AssignFinalBlock (counter);
 					counter = int.MaxValue;
 
-				} else {
+				} 
 
-					CreateBlock (newPosition);
+				else {
+
+					CreateBlock (newPositionOne);
+					CreateBlock (newPositionTwo);
 					counter++;
 
 				}
