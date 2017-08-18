@@ -55,6 +55,11 @@ public class Initialize : MonoBehaviour {
 	Vector3 borderPositionLeft;
 	Vector3 borderPositionRight;
 
+	// Sounds
+
+	public SoundBox crashSound;
+	public MoveSound moveSound;
+	MoveSound mSound;
 
 
 	// Supporting Methods
@@ -290,6 +295,9 @@ public class Initialize : MonoBehaviour {
 		timeStep = 1 / timeScale;
 
 
+		// Start Music
+		mSound = Instantiate<MoveSound> (moveSound);
+
 		// Set border kill zone
 		killList.AddRange (GenerateBorder ());
 
@@ -306,6 +314,7 @@ public class Initialize : MonoBehaviour {
 
 		directionOne = DirectionOneInput ();
 		directionTwo = DirectionTwoInput ();
+
 
 	}
 
@@ -339,6 +348,9 @@ public class Initialize : MonoBehaviour {
 					}
 
 					counter = int.MaxValue;
+					Instantiate<SoundBox> (crashSound);
+
+					mSound.GetComponent<AudioSource> ().mute = true;
 
 				} 
 
