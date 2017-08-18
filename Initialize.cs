@@ -69,6 +69,9 @@ public class Initialize : MonoBehaviour {
 	void CreateBlockOne( Vector3 position ){
 
 		GameObject newBlock = new GameObject ();
+
+		newBlock.transform.SetParent (gameObject.transform);
+
 		newBlock.AddComponent<MeshFilter> ().mesh = blockMesh;
 		newBlock.AddComponent<MeshRenderer> ().material = blockMaterialOne;
 		newBlock.GetComponent<Transform> ().localPosition = position;
@@ -82,6 +85,9 @@ public class Initialize : MonoBehaviour {
 	void CreateBlockTwo( Vector3 position ){
 
 		GameObject newBlock = new GameObject ();
+
+		newBlock.transform.SetParent (gameObject.transform);
+
 		newBlock.AddComponent<MeshFilter> ().mesh = blockMesh;
 		newBlock.AddComponent<MeshRenderer> ().material = blockMaterialTwo;
 		newBlock.GetComponent<Transform> ().localPosition = position;
