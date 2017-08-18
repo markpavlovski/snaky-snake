@@ -300,7 +300,18 @@ public class Initialize : MonoBehaviour {
 		mSound.transform.SetParent (gameObject.transform);
 
 		// Set border kill zone
-		killList.AddRange (GenerateBorder ());
+
+		List<Vector3> borderPositions = GenerateBorder ();
+		killList.AddRange (borderPositions);
+
+		// Set up border blocks;
+
+		for (int i = 0; i < borderPositions.Count; i++) {
+			GameObject borderPiece = GameObject.CreatePrimitive (PrimitiveType.Cube);
+			borderPiece.transform.localPosition = borderPositions[i];
+			borderPiece.GetComponent<MeshRenderer> ().material.color = new Color (1f, .5f, .2f);
+		}
+
 
 		// Initialize Players;
 		StartPlayerOne();
