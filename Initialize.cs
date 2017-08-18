@@ -297,6 +297,7 @@ public class Initialize : MonoBehaviour {
 
 		// Start Music
 		mSound = Instantiate<MoveSound> (moveSound);
+		mSound.transform.SetParent (gameObject.transform);
 
 		// Set border kill zone
 		killList.AddRange (GenerateBorder ());
