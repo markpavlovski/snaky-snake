@@ -127,40 +127,96 @@ public class Initialize : MonoBehaviour {
 
 	Vector3 DirectionOneInput(){
 
-		if (Input.GetKeyDown (KeyCode.UpArrow)) {
-			moveOne = moveUp;
+		if (moveOne == moveUp) {
+
+			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				moveOne = moveLeft;
+			}
+			if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				moveOne = moveRight;
+			}
+			return moveOne;
 		}
-		if (Input.GetKeyDown (KeyCode.DownArrow)) {
-			moveOne = moveDown;
+
+		if (moveOne == moveDown) {
+
+			if (Input.GetKeyDown (KeyCode.LeftArrow)) {
+				moveOne = moveLeft;
+			}
+			if (Input.GetKeyDown (KeyCode.RightArrow)) {
+				moveOne = moveRight;
+			}
+			return moveOne;
 		}
-		if (Input.GetKeyDown (KeyCode.LeftArrow)) {
-			moveOne = moveLeft;
+
+		if (moveOne == moveLeft) {
+			if (Input.GetKeyDown (KeyCode.UpArrow)) {
+				moveOne = moveUp;
+			}
+			if (Input.GetKeyDown (KeyCode.DownArrow)) {
+				moveOne = moveDown;
+			}
+			return moveOne;
 		}
-		if (Input.GetKeyDown (KeyCode.RightArrow)) {
-			moveOne = moveRight;
+
+		if (moveOne == moveRight) {
+			if (Input.GetKeyDown (KeyCode.UpArrow)) {
+				moveOne = moveUp;
+			}
+			if (Input.GetKeyDown (KeyCode.DownArrow)) {
+				moveOne = moveDown;
+			}
+			return moveOne;
 		}
 
 		return moveOne;
-
 	}
 
 	Vector3 DirectionTwoInput(){
 
-		if (Input.GetKeyDown (KeyCode.W)) {
-			moveTwo = moveUp;
+		if (moveTwo == moveUp) {
+
+			if (Input.GetKeyDown (KeyCode.A)) {
+				moveTwo = moveLeft;
+			}
+			if (Input.GetKeyDown (KeyCode.D)) {
+				moveTwo = moveRight;
+			}
+			return moveTwo;
 		}
-		if (Input.GetKeyDown (KeyCode.S)) {
-			moveTwo = moveDown;
+
+		if (moveTwo == moveDown) {
+
+			if (Input.GetKeyDown (KeyCode.A)) {
+				moveTwo = moveLeft;
+			}
+			if (Input.GetKeyDown (KeyCode.D)) {
+				moveTwo = moveRight;
+			}
+			return moveTwo;
 		}
-		if (Input.GetKeyDown (KeyCode.A)) {
-			moveTwo = moveLeft;
+
+		if (moveTwo == moveLeft) {
+			if (Input.GetKeyDown (KeyCode.W)) {
+				moveTwo = moveUp;
+			}
+			if (Input.GetKeyDown (KeyCode.S)) {
+				moveTwo = moveDown;
+			}
+			return moveTwo;
 		}
-		if (Input.GetKeyDown (KeyCode.D)) {
-			moveTwo = moveRight;
+
+		if (moveTwo == moveRight) {
+			if (Input.GetKeyDown (KeyCode.W)) {
+				moveTwo = moveUp;
+			}
+			if (Input.GetKeyDown (KeyCode.S)) {
+				moveTwo = moveDown;
+			}
+			return moveTwo;
 		}
 
 		return moveTwo;
-
 	}
 
 	void AssignFinalBlock(int index){
@@ -261,7 +317,7 @@ public class Initialize : MonoBehaviour {
 		if (timeSinceLastStep >= timeStep) {
 
 			timeSinceLastStep -= timeStep;
-			
+
 			if (counter < maxIterations) {
 
 				newPositionOne += directionOne;
