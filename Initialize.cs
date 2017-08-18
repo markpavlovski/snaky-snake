@@ -239,12 +239,17 @@ public class Initialize : MonoBehaviour {
 
 	}
 
-	void FixedUpdate(){
 
-		timeSinceLastStep += Time.deltaTime;
+	void Update(){
 
 		directionOne = DirectionOneInput ();
 		directionTwo = DirectionTwoInput ();
+
+	}
+
+	void FixedUpdate(){
+
+		timeSinceLastStep += Time.deltaTime;
 
 
 		if (timeSinceLastStep >= timeStep) {
