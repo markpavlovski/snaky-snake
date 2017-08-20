@@ -10,7 +10,7 @@ public class Controller : MonoBehaviour {
 	Initialize newRound;
 	GameObject[] children;
 	bool roundOver = true;
-	int roundCounter = 0;
+	int roundCounter = 1;
 
 
 
@@ -18,8 +18,10 @@ public class Controller : MonoBehaviour {
 
 
 		if (Input.GetKeyDown (KeyCode.N) && roundOver) {
+			
 			roundOver = false;
 			newRound = Instantiate<Initialize> (prefab);
+
 		}
 
 	}
@@ -30,6 +32,10 @@ public class Controller : MonoBehaviour {
 
 			GameObject.Destroy(newRound.gameObject);
 			roundOver = true;
+			roundCounter++;
+			ChangeRoundName ("ROUND " + roundCounter.ToString());
+
+
 		}
 
 	}
@@ -45,15 +51,14 @@ public class Controller : MonoBehaviour {
 
 
 	void Start(){
-
-		roundCounter = 0; 
-		newRound = Instantiate<Initialize> (prefab);
+		
+		ChangeRoundName ("ROUND " + roundCounter.ToString());
 
 	}
 
 	void Update () {
 
-		ChangeRoundName ("Round Two");
+	
 		StartNewRound ();
 		EndRound ();
 		

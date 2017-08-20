@@ -8,15 +8,4 @@ public class DisplayScript : MonoBehaviour {
 
 	public Text roundLabel;
 
-
-	void Start(){
-
-		roundLabel.text = "Hello";
-
-	}
-
-	void Update () {
-		
-	}
-
 }
