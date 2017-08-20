@@ -1,16 +1,21 @@
 ﻿using UnityEngine;
+using UnityEngine.UI; 
+using System;
 
 public class Controller : MonoBehaviour {
 
 	public Initialize prefab;
+	public Text roundTextLabel;
 
 	Initialize newRound;
 	GameObject[] children;
 	bool roundOver = true;
+	int roundCounter = 0;
 
 
 
 	void StartNewRound(){
+
 
 		if (Input.GetKeyDown (KeyCode.N) && roundOver) {
 			roundOver = false;
@@ -29,18 +34,26 @@ public class Controller : MonoBehaviour {
 
 	}
 
+	void ChangeRoundName(String name){
+		
+		GameObject panel = GameObject.Find ("Panel");
+		panel.GetComponent<DisplayScript> ().roundLabel.text = name;
+
+	}
 
 
 
 
 	void Start(){
 
+		roundCounter = 0; 
 		newRound = Instantiate<Initialize> (prefab);
 
 	}
 
 	void Update () {
 
+		ChangeRoundName ("Round Two");
 		StartNewRound ();
 		EndRound ();
 		
