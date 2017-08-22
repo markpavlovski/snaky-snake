@@ -1,0 +1,49 @@
+GameRound Object
+
+	Initializes snakes, plays one round until someone looses.
+
+	Inputs:  none
+
+	Outputs: Score, WinMessage
+
+Game Controller Object
+
+	on Start should generate board and border
+	Starts round, keeps track of score
+	Controls number of rounds
+	Turns on/off UI
+
+	inputs: number of rounds
+	outputs: Total
+
+UI
+
+	outputs stats
+
+Start Screen Object
+	
+	Starts new game
+	Selects from Two Player and One Player
+	Displays High Scores for Single PLayer
+
+End Screen Object
+
+	Displays Game Over message
+	Displays Winner
+	Displays Score in Single PLayer
+
+Game Loader Object
+
+	keeps track of global variables:
+	high scores, time stamps, etc.
+	
+	loads other game objects.
+
+
+
+
+
+
+
+
+
