@@ -25,20 +25,35 @@ Start Screen Object
 	Starts new game
 	Selects from Two Player and One Player
 	Displays High Scores for Single PLayer
+	Displays player highscore using 'PlayerPrefs' object property.
 
 End Screen Object
 
 	Displays Game Over message
 	Displays Winner
 	Displays Score in Single PLayer
+	Sets player highscore using 'PlayerPrefs' object property.
 
-Game Loader Object
+Game Master Object
+
+
+	Should have GameMaster script that hold all of the variables, that gets searched by the name.
+	All other objects should be prefabs or procedurally generated
+
 
 	keeps track of global variables:
 	high scores, time stamps, etc.
 	
 	loads other game objects.
 
+	Add phase variable
+
+	Should creat a game object based on the phase, i.e.:
+
+		Phase 0: Start Screen
+		Phase 1: Game Play
+		Phase 2: End Screen
+	
 
 
 
