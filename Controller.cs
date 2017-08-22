@@ -6,11 +6,17 @@ public class Controller : MonoBehaviour {
 
 	public Initialize prefab;
 	public Text roundTextLabel;
+	public Text greenScore;
+	public Text pinkScore;
+	public Vector2 score = new Vector2 (0,0);
+
 
 	Initialize newRound;
 	GameObject[] children;
 	bool roundOver = true;
 	int roundCounter = 1;
+	string message;
+	string nameOfTheGame = "SNAKYSNAKE";
 
 
 
@@ -21,19 +27,24 @@ public class Controller : MonoBehaviour {
 			
 			roundOver = false;
 			newRound = Instantiate<Initialize> (prefab);
+			ChangeScoreLabel (score , nameOfTheGame);
+
 
 		}
 
 	}
 
-	void EndRound(){
+	void ClearRound(){
 
 		if (Input.GetKeyDown (KeyCode.Space)) {
 
+			score += newRound.roundScore;
+			message = newRound.winMessage;
 			GameObject.Destroy(newRound.gameObject);
 			roundOver = true;
 			roundCounter++;
 			ChangeRoundName ("ROUND " + roundCounter.ToString());
+			ChangeScoreLabel (score , message);
 
 
 		}
@@ -47,20 +58,32 @@ public class Controller : MonoBehaviour {
 
 	}
 
+	void ChangeScoreLabel (Vector2 score, string message){
+		GameObject panel = GameObject.Find ("Panel");
+		panel.GetComponent<DisplayScript> ().playerOneLabel.text = "GREEN: " + score.x.ToString ();
+		panel.GetComponent<DisplayScript> ().playerTwoLabel.text = "PINK: " + score.y.ToString ();
+		panel.GetComponent<DisplayScript> ().headerLabel.text = message;
+		panel.GetComponent<DisplayScript> ().headerLabel.color = Color.green;
+
+
+
+	}
+
 
 
 
 	void Start(){
 		
 		ChangeRoundName ("ROUND " + roundCounter.ToString());
+		StartNewRound ();
+
 
 	}
 
 	void Update () {
-
 	
 		StartNewRound ();
-		EndRound ();
+		ClearRound ();
 		
 	}
 

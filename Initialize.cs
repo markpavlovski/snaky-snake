@@ -7,13 +7,12 @@ public class Initialize : MonoBehaviour {
 	// General
 
 	public int maxIterations;
-	public int scoreOne;
-	public int scoreTwo;
 	public char initialOrientationOne;
 	public char initialOrientationTwo;
 	public Vector2 initialPositionOne;
 	public Vector2 initialPositionTwo;
 	public float timeScale;
+	public bool roundEnded = false; 
 
 	float timeStep;
 	float timeSinceLastStep;
@@ -60,6 +59,16 @@ public class Initialize : MonoBehaviour {
 	public SoundBox crashSound;
 	public MoveSound moveSound;
 	MoveSound mSound;
+
+	// Score Keeping
+
+	public Vector2 roundScore;
+	public string winMessage;
+
+	Vector2 playerOneWins = new Vector2(1,0);
+	Vector2 playerTwoWins = new Vector2(0,1);
+	Vector2 tie = new Vector2 (0, 0);
+
 
 
 	// Supporting Methods
@@ -347,22 +356,34 @@ public class Initialize : MonoBehaviour {
 				if (KillCondition (newPositionOne) || KillCondition (newPositionTwo)) {
 
 
+
 					if (KillCondition(newPositionOne)) {
 
 						AssignFinalBlock (2 * counter - 5);
+						roundScore = playerTwoWins;
+						winMessage = "PINK PLAYER WINS!";
 
 					} 
 
 					if (KillCondition(newPositionTwo)){
 
 						AssignFinalBlock (2 * counter - 4);
+						roundScore = playerOneWins;
+						winMessage = "GREEN PLAYER WINS!";
+
+					}
+
+					if (KillCondition (newPositionOne) && KillCondition (newPositionTwo)) {
+						
+						roundScore = tie;
+						winMessage = "TIE!";
 
 					}
 
 					counter = int.MaxValue;
 					Instantiate<SoundBox> (crashSound);
-
 					mSound.GetComponent<AudioSource> ().mute = true;
+					roundEnded = true;
 
 				} 
 
