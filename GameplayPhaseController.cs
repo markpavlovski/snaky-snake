@@ -2,7 +2,7 @@
 using UnityEngine.UI; 
 using System;
 
-public class Controller : MonoBehaviour {
+public class GameplayPhaseController : MonoBehaviour {
 
 	public Initialize prefab;
 	public Text roundTextLabel;
