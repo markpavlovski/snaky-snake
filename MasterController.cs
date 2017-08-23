@@ -2,20 +2,74 @@
 
 public class MasterController : MonoBehaviour {
 
+	// 
+
 	public GameObject[] gamePhases = new GameObject[3];
-
-
 	public int phaseIndex = 0;
+	public bool loadNextPhase = false;
 
+	GameObject currentPhase;
+
+
+	// Suppotring Methods
+
+		bool CheckPhaseSwitch(){
+
+			return false;
+
+		}
+
+		int ChangePhaseIndex(int currentPhase){
+
+			if (currentPhase == 0){
+				return 1;
+			} else if (currentPhase = 1){
+				return 2;
+			} else if (currentPhase = 3){
+				return 0;
+			} else {
+				return 0;
+			}
+
+		}
+
+		GameObject InitiatePhase(int phase){
+
+			currentPhase = Instantiate<GameObject> (gamePhases [phase]);
+
+		}
+
+		void EndCurrentPhase(){
+
+			if (!currentPhase.Equals(null)){
+
+				GameObject.Destroy(currentPhase.gameObject);
+				
+			}
+
+		}
+	
 
 
 	void Start () {
 
-		GameObject newPhase = Instantiate<GameObject> (gamePhases [phaseIndex]);
-		
+		InitiatePhase(phaseIndex);
+
 	}
 	
 	void Update () {
+
+
+		if (loadNextPhase) {
+
+			loadNextPhase = false;
+
+			EndCurrentPhase();
+			phaseIndex = ChangePhaseIndex(phaseIndex);
+			InitiatePhase(phaseIndex);
+
+
+		}
 		
 	}
 

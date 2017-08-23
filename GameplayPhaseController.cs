@@ -4,6 +4,25 @@ using System;
 
 public class GameplayPhaseController : MonoBehaviour {
 
+	// Phase Change Logic
+	GameObject gameMaster = GameObject.Find ("Game Master");
+	MasterController masterController = gameMaster.GetComponent<MasterController> ();
+	bool changePhase = false;
+
+	void ChangePhase(){
+
+		changePhase = Input.GetKeyDown (KeyCode.Z);
+		if (changePhase) {
+
+			changePhase = false;
+			masterController.loadNextPhase = true;
+
+		}
+
+	}
+
+	// Definitions
+
 	public Initialize prefab;
 	public Text roundTextLabel;
 	public Text greenScore;
@@ -73,7 +92,7 @@ public class GameplayPhaseController : MonoBehaviour {
 
 
 	void Start(){
-		
+
 		ChangeRoundName ("ROUND " + roundCounter.ToString());
 		StartNewRound ();
 
@@ -84,6 +103,7 @@ public class GameplayPhaseController : MonoBehaviour {
 	
 		StartNewRound ();
 		ClearRound ();
+		ChangePhase();
 		
 	}
 
