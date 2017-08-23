@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Collections;
 
 public class StartPhaseController : MonoBehaviour {
 
@@ -17,6 +18,32 @@ public class StartPhaseController : MonoBehaviour {
 
 		}
 
+	}
+
+	IEnumerator  AutoStart(){
+
+		WaitForSeconds wait = new WaitForSeconds(10.0f);
+		masterController.loadNextPhase = true;
+
+	}
+
+
+	// Get Stats from user preference file
+
+	string lastWinner = PlayerPrefs.GetString("Last Winner"));
+	
+
+
+
+	void Awake (){
+
+		StartCoroutine(AutoStart());
+
+	}
+
+	void Start(){
+		GameObject panel = GameObject.Find ("Panel");
+		panel.GetComponent<DisplayScript> ().roundLabel.text = lastWinner;
 	}
 
 

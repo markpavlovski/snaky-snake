@@ -8,6 +8,12 @@ public class MasterController : MonoBehaviour {
 	public int phaseIndex = 0;
 	public bool loadNextPhase = false;
 
+	public int gamesToDate = 0;
+	public Vector2[] gameScores;
+	public string lastWinner = "Yellow Player";
+
+
+
 	GameObject currentPhase;
 
 

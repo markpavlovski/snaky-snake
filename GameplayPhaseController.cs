@@ -95,7 +95,7 @@ public class GameplayPhaseController : MonoBehaviour {
 
 		ChangeRoundName ("ROUND " + roundCounter.ToString());
 		StartNewRound ();
-
+		PlayerPrefs.SetString("Last Winner", "Nice...");
 
 	}
 
