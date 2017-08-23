@@ -14,7 +14,7 @@ Game Controller Object
 	Turns on/off UI
 
 	inputs: number of rounds
-	outputs: Total
+	outputs: Total rounds
 
 UI
 
