@@ -1,11 +1,10 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using UnityEngine;
 
 public class StartPhaseController : MonoBehaviour {
 
 	// Phase Change Logic
-	GameObject gameMaster = GameObject.Find ("Game Master");
-	MasterController masterController = gameMaster.GetComponent<MasterController> ();
+	MasterController masterController;
 	bool changePhase = false;
 
 	void ChangePhase(){
@@ -20,30 +19,38 @@ public class StartPhaseController : MonoBehaviour {
 
 	}
 
-	IEnumerator  AutoStart(){
+
+
+	/*
+
+
+	private void Awake () {
+		StartCoroutine(AutoStart());
+	}
+
+
+
+	private IEnumerator AutoStart(){
 
 		WaitForSeconds wait = new WaitForSeconds(10.0f);
 		masterController.loadNextPhase = true;
-
-	}
-
-
-	// Get Stats from user preference file
-
-	string lastWinner = PlayerPrefs.GetString("Last Winner"));
-	
+		yield return wait;
 
 
-
-	void Awake (){
-
-		StartCoroutine(AutoStart());
-
-	}
+	}*/
 
 	void Start(){
+
+
+		string lastWinner = PlayerPrefs.GetString("Last Winner");
+
+		GameObject gameMaster = GameObject.Find ("Game Master");
+		masterController = gameMaster.GetComponent<MasterController> ();
+		/*
 		GameObject panel = GameObject.Find ("Panel");
-		panel.GetComponent<DisplayScript> ().roundLabel.text = lastWinner;
+		panel.GetComponent<DisplayScript> ().roundLabel.text = "lastWinner";*/
+
+
 	}
 
 

@@ -5,8 +5,7 @@ using System;
 public class GameplayPhaseController : MonoBehaviour {
 
 	// Phase Change Logic
-	GameObject gameMaster = GameObject.Find ("Game Master");
-	MasterController masterController = gameMaster.GetComponent<MasterController> ();
+	MasterController masterController;
 	bool changePhase = false;
 
 	void ChangePhase(){
@@ -72,26 +71,28 @@ public class GameplayPhaseController : MonoBehaviour {
 
 	void ChangeRoundName(String name){
 		
-		GameObject panel = GameObject.Find ("Panel");
-		panel.GetComponent<DisplayScript> ().roundLabel.text = name;
+	/*	GameObject panel = GameObject.Find ("Panel");
+		panel.GetComponent<DisplayScript> ().roundLabel.text = name;*/
 
 	}
 
 	void ChangeScoreLabel (Vector2 score, string message){
+		/*
 		GameObject panel = GameObject.Find ("Panel");
 		panel.GetComponent<DisplayScript> ().playerOneLabel.text = "GREEN: " + score.x.ToString ();
 		panel.GetComponent<DisplayScript> ().playerTwoLabel.text = "PINK: " + score.y.ToString ();
 		panel.GetComponent<DisplayScript> ().headerLabel.text = message;
 		panel.GetComponent<DisplayScript> ().headerLabel.color = Color.green;
-
-
-
+		*/
 	}
 
 
 
 
 	void Start(){
+		
+		GameObject gameMaster = GameObject.Find ("Game Master");
+		masterController = gameMaster.GetComponent<MasterController> ();
 
 		ChangeRoundName ("ROUND " + roundCounter.ToString());
 		StartNewRound ();

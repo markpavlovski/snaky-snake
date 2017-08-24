@@ -3,8 +3,7 @@
 public class EndPhaseController : MonoBehaviour {
 
 	// Phase Change Logic
-	GameObject gameMaster = GameObject.Find ("Game Master");
-	MasterController masterController = gameMaster.GetComponent<MasterController> ();
+	MasterController masterController ;
 	bool changePhase = false;
 
 	void ChangePhase(){
@@ -17,6 +16,13 @@ public class EndPhaseController : MonoBehaviour {
 
 		}
 
+	}
+
+	void Start(){
+		
+		GameObject gameMaster = GameObject.Find ("Game Master");
+		masterController = gameMaster.GetComponent<MasterController> ();
+	
 	}
 
 

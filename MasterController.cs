@@ -27,11 +27,12 @@ public class MasterController : MonoBehaviour {
 
 		int ChangePhaseIndex(int currentPhase){
 
+
 			if (currentPhase == 0){
 				return 1;
-			} else if (currentPhase = 1){
+			} else if (currentPhase == 1){
 				return 2;
-			} else if (currentPhase = 3){
+			} else if (currentPhase == 3){
 				return 0;
 			} else {
 				return 0;
@@ -39,9 +40,9 @@ public class MasterController : MonoBehaviour {
 
 		}
 
-		GameObject InitiatePhase(int phase){
+		void InitiatePhase(int phase){
 
-			currentPhase = Instantiate<GameObject> (gamePhases [phase]);
+				currentPhase = Instantiate<GameObject> (gamePhases [phase]);
 
 		}
 
