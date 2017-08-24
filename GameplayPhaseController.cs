@@ -70,10 +70,10 @@ public class GameplayPhaseController : MonoBehaviour {
 	}
 
 	void ChangeRoundName(String name){
-		
-	/*	GameObject panel = GameObject.Find ("Panel");
-		panel.GetComponent<DisplayScript> ().roundLabel.text = name;*/
-
+	/*	
+	GameObject panel = GameObject.Find ("Panel");
+		panel.GetComponent<DisplayScript> ().roundLabel.text = name;
+*/
 	}
 
 	void ChangeScoreLabel (Vector2 score, string message){
@@ -83,7 +83,7 @@ public class GameplayPhaseController : MonoBehaviour {
 		panel.GetComponent<DisplayScript> ().playerTwoLabel.text = "PINK: " + score.y.ToString ();
 		panel.GetComponent<DisplayScript> ().headerLabel.text = message;
 		panel.GetComponent<DisplayScript> ().headerLabel.color = Color.green;
-		*/
+*/
 	}
 
 

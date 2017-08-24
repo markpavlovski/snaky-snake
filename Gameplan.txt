@@ -1,3 +1,17 @@
+SOME NEW IDEAS:
+
+-- START SCENE IS ALL BLACK WITH START BUTTON
+-- GAME SCENE AS IS
+-- END SCENE IS ALL THE SAME COLOR AS WELL. 
+-- NEW UI OBJECT PREFAB THAT BELONGS TO EACH INDIVIDUAL PHASE
+
+
+
+
+
+
+
+
 Game Round Object
 
 	Initializes snakes, plays one round until someone looses.
