@@ -1,4 +1,4 @@
-GameRound Object
+Game Round Object
 
 	Initializes snakes, plays one round until someone looses.
 
@@ -6,7 +6,7 @@ GameRound Object
 
 	Outputs: Score, WinMessage
 
-Game Controller Object
+Game Play Controller Object
 
 	on Start should generate board and border
 	Starts round, keeps track of score
@@ -34,7 +34,7 @@ End Screen Object
 	Displays Score in Single PLayer
 	Sets player highscore using 'PlayerPrefs' object property.
 
-Game Master Object
+Game Master Object / Controller
 
 
 	Should have GameMaster script that hold all of the variables, that gets searched by the name.
