@@ -1,0 +1,34 @@
+- Make Camera a part of the game phase
+- Add ESC to go back to the starting phase
+- Press SPACE for user controls / Pause / Unpause
+
+Starting Phase:
+
+	- Dark Grey Background
+	- Add animation to the starting screen where snakes form letters "SNAKY SNAKE" - make those out of blocks
+	- Add UI Single Player - Two Player Buttons
+	- Clue to press Left/Right arrow to select, ENTER to begin or SPACE for controlls
+	- Should say which player won last
+	- Should say what the high score is for single player
+
+
+Two Player Gameplay Phase:
+
+	- Remove user forcing next round. Game Always to 10, automatticly goes to the next round, press space to pause / unpause
+	- Keeps track of the round number
+	- Keeps track of player vs player score
+
+One Player Gameplay Phase
+
+	- needs to be created from scratch
+	- Always one round?
+	- keeps track of score
+
+
+End Phase
+	- Dark Grey Background
+	- For Two Player, should say which player wins.
+	- For Single Player, should say the score
+	- Add UI Single Player - Two Player Buttons
+	- Clue to press Left/Right arrow to select, ENTER to begin or SPACE for controlls
+
