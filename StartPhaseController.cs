@@ -1,16 +1,58 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using System.Collections;
 
 public class StartPhaseController : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
+	// Phase Change Logic
+	GameObject gameMaster = GameObject.Find ("Game Master");
+	MasterController masterController = gameMaster.GetComponent<MasterController> ();
+	bool changePhase = false;
+
+	void ChangePhase(){
+
+		changePhase = Input.GetKeyDown (KeyCode.Z);
+		if (changePhase) {
+
+			changePhase = false;
+			masterController.loadNextPhase = true;
+
+		}
+
 	}
+
+	IEnumerator  AutoStart(){
+
+		WaitForSeconds wait = new WaitForSeconds(10.0f);
+		masterController.loadNextPhase = true;
+
+	}
+
+
+	// Get Stats from user preference file
+
+	string lastWinner = PlayerPrefs.GetString("Last Winner"));
 	
-	// Update is called once per frame
-	void Update () {
-		
+
+
+
+	void Awake (){
+
+		StartCoroutine(AutoStart());
+
 	}
+
+	void Start(){
+		GameObject panel = GameObject.Find ("Panel");
+		panel.GetComponent<DisplayScript> ().roundLabel.text = lastWinner;
+	}
+
+
+	void Update () {
+
+		ChangePhase();
+
+	}
+
 }
+
+
