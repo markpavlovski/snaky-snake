@@ -1,3 +1,7 @@
+Pixel font:
+http://www.1001fonts.com/blox-brk-font.html
+
+
 - Make Camera a part of the game phase
 - Add ESC to go back to the starting phase
 - Press SPACE for user controls / Pause / Unpause
