@@ -13,6 +13,8 @@ public class MasterController : MonoBehaviour {
 	public int gamesToDate = 0;
 	public Vector2[] gameScores;
 	public string lastWinner = "Yellow Player";
+	public string gameWinnerMessage;
+	public string gameFinalScore;
 
 
 

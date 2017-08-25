@@ -1,22 +1,26 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI; 
+using System;
+using System.Collections.Generic;
 
-public class EndPhaseController : MonoBehaviour {
+public class ControlsPhaseController : MonoBehaviour {
 
 	MasterController masterController;
 	bool changePhase = false;
+	float timeSinceStart = 0f;
+	float initialWaitTime = 10f;
 
 	void ChangePhase(){
-		changePhase = Input.GetKeyDown (KeyCode.Return);
+		
 		if (changePhase) {
 			changePhase = false;
 			masterController.loadNextPhase = true;
 		}
+
 	}
 
 
 
-	
 
 	void Start(){
 
@@ -26,12 +30,21 @@ public class EndPhaseController : MonoBehaviour {
 	}
 
 
-	void Update () {
+	void FixedUpdate () {
+
+		timeSinceStart += Time.deltaTime;
+
+		if (timeSinceStart >= initialWaitTime){
+				
+				changePhase = true;
+		}
 
 		ChangePhase();
 
 	}
 
 }
+
+
 
 

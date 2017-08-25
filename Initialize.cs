@@ -342,7 +342,7 @@ public class Initialize : MonoBehaviour {
 
 		if (firstUpdateFlag) {
 
-			if (timeSinceStart > initialWaitTime){
+			if (timeSinceStart >= initialWaitTime){
 				
 				firstUpdateFlag = false;
 

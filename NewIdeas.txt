@@ -1,3 +1,15 @@
+
+ADD A NEW PHASE To SHOW Controls after the first screen
+add loading bar
+set a timer
+
+
+
+
+
+
+
+
 Pixel font:
 http://www.1001fonts.com/blox-brk-font.html
 
