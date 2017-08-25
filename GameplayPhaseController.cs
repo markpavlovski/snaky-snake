@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI; 
 using System;
+using System.Collections.Generic;
 
 public class GameplayPhaseController : MonoBehaviour {
 
@@ -42,7 +43,8 @@ public class GameplayPhaseController : MonoBehaviour {
 
 
 		if (Input.GetKeyDown (KeyCode.N) && roundOver) {
-			
+
+
 			roundOver = false;
 			newRound = Instantiate<Initialize> (prefab);
 			newRound.transform.SetParent (gameObject.transform);
@@ -96,13 +98,13 @@ public class GameplayPhaseController : MonoBehaviour {
 		masterController = gameMaster.GetComponent<MasterController> ();
 
 		ChangeRoundName ("ROUND " + roundCounter.ToString());
-		StartNewRound ();
+
 		PlayerPrefs.SetString("Last Winner", "Nice...");
 
 	}
 
 	void Update () {
-	
+
 		StartNewRound ();
 		ClearRound ();
 		ChangePhase();

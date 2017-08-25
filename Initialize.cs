@@ -98,6 +98,7 @@ public class Initialize : MonoBehaviour {
 
 	void CreateBlockTwo( Vector3 position ){
 
+
 		GameObject newBlock = new GameObject ();
 
 		newBlock.transform.SetParent (gameObject.transform);
@@ -313,6 +314,9 @@ public class Initialize : MonoBehaviour {
 		List<Vector3> borderPositions = GenerateBorder ();
 		killList.AddRange (borderPositions);
 
+
+
+		/**/
 
 		// Initialize Players;
 		StartPlayerOne();
