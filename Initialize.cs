@@ -11,11 +11,13 @@ public class Initialize : MonoBehaviour {
 	public char initialOrientationTwo;
 	public Vector2 initialPositionOne;
 	public Vector2 initialPositionTwo;
-	public float timeScale;
+	float timeScale = 8;
+	float initialWaitTime = 0.95f;
 	public bool roundEnded = false; 
 
 	float timeStep;
 	float timeSinceLastStep;
+	float timeSinceStart = 0;
 	int counter = 0;
 	Vector3 newPositionOne;
 	Vector3 newPositionTwo;
@@ -24,6 +26,7 @@ public class Initialize : MonoBehaviour {
 	List<Vector3> blockLocations = new List<Vector3> ();
 	List<MeshRenderer> blockMeshes = new List<MeshRenderer> ();
 	List<Vector3> killList = new List<Vector3> ();
+	bool firstUpdateFlag = false;
 
 
 	// Block Creation;
@@ -68,6 +71,8 @@ public class Initialize : MonoBehaviour {
 	Vector2 playerOneWins = new Vector2(1,0);
 	Vector2 playerTwoWins = new Vector2(0,1);
 	Vector2 tie = new Vector2 (0, 0);
+
+
 
 
 
@@ -303,6 +308,7 @@ public class Initialize : MonoBehaviour {
 
 		// Set time scale
 		timeStep = 1 / timeScale;
+		timeSinceStart = 0;
 
 
 		// Start Music
@@ -316,13 +322,8 @@ public class Initialize : MonoBehaviour {
 
 
 
-		/**/
+		firstUpdateFlag = true;
 
-		// Initialize Players;
-		StartPlayerOne();
-		StartPlayerTwo();
-
-		counter++;
 
 	}
 
@@ -337,65 +338,83 @@ public class Initialize : MonoBehaviour {
 
 	void FixedUpdate(){
 
-		timeSinceLastStep += Time.deltaTime;
+		timeSinceStart += Time.deltaTime;
+
+		if (firstUpdateFlag) {
+
+			if (timeSinceStart > initialWaitTime){
+				
+				firstUpdateFlag = false;
+
+				// Initialize Players;
+				StartPlayerOne ();
+				StartPlayerTwo ();
+
+				counter++;
+
+			}
 
 
-		if (timeSinceLastStep >= timeStep) {
+		} else {
 
-			timeSinceLastStep -= timeStep;
-
-			if (counter < maxIterations) {
-
-				newPositionOne += directionOne;
-				newPositionTwo += directionTwo;
-
-				if (KillCondition (newPositionOne) || KillCondition (newPositionTwo)) {
+			timeSinceLastStep += Time.deltaTime;
 
 
+			if (timeSinceLastStep >= timeStep) {
 
-					if (KillCondition(newPositionOne)) {
+				timeSinceLastStep -= timeStep;
 
-						AssignFinalBlock (2 * counter - 5);
-						roundScore = playerTwoWins;
-						winMessage = "PINK PLAYER WINS!";
+				if (counter < maxIterations) {
 
-					} 
+					newPositionOne += directionOne;
+					newPositionTwo += directionTwo;
 
-					if (KillCondition(newPositionTwo)){
+					if (KillCondition (newPositionOne) || KillCondition (newPositionTwo)) {
 
-						AssignFinalBlock (2 * counter - 4);
-						roundScore = playerOneWins;
-						winMessage = "GREEN PLAYER WINS!";
 
-					}
 
-					if (KillCondition (newPositionOne) && KillCondition (newPositionTwo)) {
+						if (KillCondition (newPositionOne)) {
+
+							AssignFinalBlock (2 * counter - 5);
+							roundScore = playerTwoWins;
+							winMessage = "PINK PLAYER WINS!";
+
+						} 
+
+						if (KillCondition (newPositionTwo)) {
+
+							AssignFinalBlock (2 * counter - 4);
+							roundScore = playerOneWins;
+							winMessage = "GREEN PLAYER WINS!";
+
+						}
+
+						if (KillCondition (newPositionOne) && KillCondition (newPositionTwo)) {
 						
-						roundScore = tie;
-						winMessage = "TIE!";
+							roundScore = tie;
+							winMessage = "TIE!";
+
+						}
+
+						counter = int.MaxValue;
+
+						SoundBox newCrash = Instantiate<SoundBox> (crashSound);
+						newCrash.transform.SetParent (gameObject.transform);
+
+						mSound.GetComponent<AudioSource> ().mute = true;
+						roundEnded = true;
+
+					} else {
+
+						CreateBlockOne (newPositionOne);
+						CreateBlockTwo (newPositionTwo);
+						counter++;
 
 					}
-
-					counter = int.MaxValue;
-
-					SoundBox newCrash = Instantiate<SoundBox> (crashSound);
-					newCrash.transform.SetParent (gameObject.transform);
-
-					mSound.GetComponent<AudioSource> ().mute = true;
-					roundEnded = true;
-
-				} 
-
-				else {
-
-					CreateBlockOne (newPositionOne);
-					CreateBlockTwo (newPositionTwo);
-					counter++;
 
 				}
 
 			}
-
 		}
 
 	}

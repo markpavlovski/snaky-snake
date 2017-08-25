@@ -42,7 +42,7 @@ public class GameplayPhaseController : MonoBehaviour {
 	void StartNewRound(){
 
 
-		if (Input.GetKeyDown (KeyCode.N) && roundOver) {
+		if (roundOver) {
 
 
 			roundOver = false;
