@@ -377,7 +377,7 @@ public class Initialize : MonoBehaviour {
 
 							AssignFinalBlock (2 * counter - 5);
 							roundScore = playerTwoWins;
-							winMessage = "PINK PLAYER WINS!";
+							winMessage = "PINK PLAYER WINS";
 
 						} 
 
@@ -385,7 +385,7 @@ public class Initialize : MonoBehaviour {
 
 							AssignFinalBlock (2 * counter - 4);
 							roundScore = playerOneWins;
-							winMessage = "GREEN PLAYER WINS!";
+							winMessage = "GREEN PLAYER WINS";
 
 						}
 
