@@ -37,8 +37,8 @@ public class MasterController : MonoBehaviour {
 			return 1;
 		} else if (currentPhase == 1){
 			return 2;
-		} else if (currentPhase == 3){
-			return 0;
+		} else if (currentPhase == 2){
+			return 3;
 		} else {
 			return 0;
 		}

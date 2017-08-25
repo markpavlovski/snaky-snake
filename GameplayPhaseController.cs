@@ -28,7 +28,7 @@ public class GameplayPhaseController : MonoBehaviour {
 	public Text pinkScore;
 	public Vector2 score = new Vector2 (0,0);
 
-	float maxScore = Mathf.max(score.x,score.y);
+	float maxScore;
 
 
 
@@ -63,7 +63,7 @@ public class GameplayPhaseController : MonoBehaviour {
 			if (Input.GetKeyDown (KeyCode.Space)) {
 
 				score += newRound.roundScore;
-				maxScore = Mathf(score.x, score.y);
+				maxScore = Mathf.Max(score.x, score.y);
 
 				message = newRound.winMessage;
 				GameObject.Destroy (newRound.gameObject);
@@ -72,7 +72,7 @@ public class GameplayPhaseController : MonoBehaviour {
 				ChangeRoundName ("ROUND " + roundCounter.ToString ());
 				ChangeScoreLabel (score, message);
 
-				if ( maxScore >= 5 || roundCounter => 15) {
+				if ( maxScore >= 5 || roundCounter >= 15) {
 
 					if (score.x > score.y) {
 						masterController.gameWinnerMessage = "GREEN PLAYER WINS";

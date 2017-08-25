@@ -7,11 +7,13 @@ public class ControlsPhaseController : MonoBehaviour {
 
 	MasterController masterController;
 	bool changePhase = false;
+	bool nextKey = false;
 	float timeSinceStart = 0f;
-	float initialWaitTime = 10f;
+	float initialWaitTime = 3f;
 
 	void ChangePhase(){
-		
+
+
 		if (changePhase) {
 			changePhase = false;
 			masterController.loadNextPhase = true;
@@ -34,7 +36,7 @@ public class ControlsPhaseController : MonoBehaviour {
 
 		timeSinceStart += Time.deltaTime;
 
-		if (timeSinceStart >= initialWaitTime){
+		if ( nextKey || timeSinceStart >= initialWaitTime){
 				
 				changePhase = true;
 		}
@@ -42,6 +44,13 @@ public class ControlsPhaseController : MonoBehaviour {
 		ChangePhase();
 
 	}
+
+
+	void Update (){
+
+		nextKey = Input.GetKeyDown (KeyCode.Return);
+	}
+
 
 }
 
