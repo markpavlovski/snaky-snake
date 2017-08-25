@@ -20,11 +20,21 @@ public class StartPhaseController : MonoBehaviour {
 
 	void Start(){
 
+		GameObject background = GameObject.CreatePrimitive (PrimitiveType.Cube);
+		background.transform.SetParent (gameObject.transform);
+		background.transform.localScale = new Vector3 (150f, 100f, 1f);
+		background.GetComponent<MeshRenderer> ().material.color = Color.cyan;
+
+
 		GameObject gameMaster = GameObject.Find ("Game Master");
 		masterController = gameMaster.GetComponent<MasterController> ();
 
 		masterController.userInterface = Instantiate<GameObject> (userInterfacePrefab);
 		masterController.userInterface.transform.SetParent (gameObject.transform);
+
+
+
+
 
 	}
 
