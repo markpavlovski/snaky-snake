@@ -45,6 +45,7 @@ public class GameplayPhaseController : MonoBehaviour {
 			
 			roundOver = false;
 			newRound = Instantiate<Initialize> (prefab);
+			newRound.transform.SetParent (gameObject.transform);
 			ChangeScoreLabel (score , nameOfTheGame);
 
 
