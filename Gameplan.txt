@@ -1,3 +1,18 @@
+20170826 Ideas
+
+- Automatically transition from final screen to the first phase.;
+- Get panel to work on the last slide to display winner score;
+
+- add intro scene music
+- add final scene music
+
+-change enter to Space
+
+- Make materials time dependent;
+- disable space buttons when in the middle of the round
+
+
+
 SOME NEW IDEAS:
 
 -- START SCENE IS ALL BLACK WITH START BUTTON

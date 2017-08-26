@@ -1,14 +1,18 @@
-﻿using System.Collections;
-using UnityEngine;
+﻿using UnityEngine;
+using UnityEngine.UI; 
+using System;
+using System.Collections.Generic;
 
 public class EndPhaseController : MonoBehaviour {
 
 	MasterController masterController;
 	bool changePhase = false;
+	bool nextKey = false;
+	float timeSinceStart = 0f;
+	float initialWaitTime = 10f;
 
 
 	void ChangePhase(){
-		changePhase = Input.GetKeyDown (KeyCode.Return);
 		if (changePhase) {
 			changePhase = false;
 			masterController.loadNextPhase = true;
@@ -23,21 +27,29 @@ public class EndPhaseController : MonoBehaviour {
 
 		GameObject gameMaster = GameObject.Find ("Game Master");
 		masterController = gameMaster.GetComponent<MasterController> ();
-		/*
-		GameObject panel = GameObject.Find ("End Panel");
-		panel.GetComponent<EndDisplay> ().message.text = masterController.gameWinnerMessage;
-		*/
+
 	}
 
 
-	void Update () {
+	void FixedUpdate () {
 
+		timeSinceStart += Time.deltaTime;
 
+		if ( nextKey || timeSinceStart >= initialWaitTime){
 
+			changePhase = true;
+		}
 
 		ChangePhase();
 
 	}
+
+	void Update () {
+
+		nextKey = Input.GetKeyDown (KeyCode.Space);
+
+	}
+
 
 }
 

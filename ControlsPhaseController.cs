@@ -48,7 +48,7 @@ public class ControlsPhaseController : MonoBehaviour {
 
 	void Update (){
 
-		nextKey = Input.GetKeyDown (KeyCode.Return);
+		nextKey = Input.GetKeyDown (KeyCode.Space);
 	}
 
 

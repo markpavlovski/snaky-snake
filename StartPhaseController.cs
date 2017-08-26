@@ -7,7 +7,7 @@ public class StartPhaseController : MonoBehaviour {
 	bool changePhase = false;
 
 	void ChangePhase(){
-		changePhase = Input.GetKeyDown (KeyCode.Return);
+		changePhase = Input.GetKeyDown (KeyCode.Space);
 		if (changePhase) {
 			changePhase = false;
 			masterController.loadNextPhase = true;
