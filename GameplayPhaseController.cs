@@ -13,6 +13,7 @@ public class GameplayPhaseController : MonoBehaviour {
 
 		if (changePhase) {
 
+
 			changePhase = false;
 			masterController.loadNextPhase = true;
 
@@ -29,6 +30,9 @@ public class GameplayPhaseController : MonoBehaviour {
 	public Vector2 score = new Vector2 (0,0);
 
 	float maxScore;
+	int maxRound = 10;
+	int i = 0;
+
 
 
 
@@ -38,7 +42,6 @@ public class GameplayPhaseController : MonoBehaviour {
 	bool roundOver = true;
 	int roundCounter = 1;
 	string message;
-	// string nameOfTheGame = "SNAKYSNAKE";
 
 
 
@@ -49,47 +52,57 @@ public class GameplayPhaseController : MonoBehaviour {
 		
 
 				roundOver = false;
+				ChangeRoundName ("ROUND " + roundCounter.ToString ());
+				ChangeScoreLabel (score, "SNAKYSNAKE");
 				newRound = Instantiate<Initialize> (prefab);
 				newRound.transform.SetParent (gameObject.transform);
-				//ChangeScoreLabel (score , nameOfTheGame);
 
 			}
 
 	}
 
 	void ClearRound(){
-		
-
-			if (Input.GetKeyDown (KeyCode.Space)) {
-
-				score += newRound.roundScore;
-				maxScore = Mathf.Max(score.x, score.y);
-
-				message = newRound.winMessage;
-				GameObject.Destroy (newRound.gameObject);
-				roundOver = true;
-				roundCounter++;
-				ChangeRoundName ("ROUND " + roundCounter.ToString ());
-				ChangeScoreLabel (score, message);
-
-				if ( maxScore >= 5 || roundCounter >= 15) {
-
-					if (score.x > score.y) {
-						masterController.gameWinnerMessage = "GREEN PLAYER WINS";
-					} else if (score.y > score.x) {
-						masterController.gameWinnerMessage = "PINK PLAYER WINS";
-					} else {
-						masterController.gameWinnerMessage = "IT'S A TIE";
-					}
-
-					masterController.gameFinalScore = score.x.ToString() + " : " + score.y.ToString();
-
-					changePhase = true;
-				} 
 
 
-			}
+		if (newRound.roundEnded & i == 0) {
+
+			score += newRound.roundScore;
+			maxScore = Mathf.Max(score.x, score.y);
+			message = newRound.winMessage;
+			ChangeScoreLabel (score, message);
+			i++;
+
 		}
+
+
+		if (Input.GetKeyDown (KeyCode.Space) && newRound.roundEnded ) {
+
+			i = 0;
+			message = newRound.winMessage;
+			GameObject.Destroy (newRound.gameObject);
+			roundOver = true;
+			roundCounter++;
+			ChangeRoundName ("ROUND " + roundCounter.ToString ());
+			ChangeScoreLabel (score, message);
+
+			if ( maxScore >= 5 || roundCounter > maxRound) {
+
+				if (score.x > score.y) {
+					masterController.gameWinnerMessage = "GREEN PLAYER WINS";
+				} else if (score.y > score.x) {
+					masterController.gameWinnerMessage = "PINK PLAYER WINS";
+				} else {
+					masterController.gameWinnerMessage = "IT'S A TIE";
+				}
+
+				masterController.gameFinalScore = score.x.ToString() + " : " + score.y.ToString();
+
+				changePhase = true;
+			} 
+
+
+		}
+	}
 
 	void ChangeRoundName(String name){
 
@@ -113,7 +126,6 @@ public class GameplayPhaseController : MonoBehaviour {
 		
 		GameObject gameMaster = GameObject.Find ("Game Master");
 		masterController = gameMaster.GetComponent<MasterController> ();
-		PlayerPrefs.SetString("Last Winner", "Nice...");
 
 	}
 
