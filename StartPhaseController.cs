@@ -3,8 +3,14 @@ using UnityEngine;
 
 public class StartPhaseController : MonoBehaviour {
 
+
+
+
 	MasterController masterController;
 	bool changePhase = false;
+
+
+
 
 	void ChangePhase(){
 		changePhase = Input.GetKeyDown (KeyCode.Space);
@@ -15,6 +21,7 @@ public class StartPhaseController : MonoBehaviour {
 	}
 
 
+	public SoundBox bgSound;
 
 	
 
@@ -22,6 +29,7 @@ public class StartPhaseController : MonoBehaviour {
 
 		GameObject gameMaster = GameObject.Find ("Game Master");
 		masterController = gameMaster.GetComponent<MasterController> ();
+
 
 	}
 

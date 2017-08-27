@@ -392,7 +392,7 @@ public class Initialize : MonoBehaviour {
 						if (KillCondition (newPositionOne) && KillCondition (newPositionTwo)) {
 						
 							roundScore = tie;
-							winMessage = "TIE!";
+							winMessage = "IT'S A TIE";
 
 						}
 

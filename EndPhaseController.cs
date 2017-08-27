@@ -9,7 +9,7 @@ public class EndPhaseController : MonoBehaviour {
 	bool changePhase = false;
 	bool nextKey = false;
 	float timeSinceStart = 0f;
-	float initialWaitTime = 10f;
+	float initialWaitTime = 12f;
 
 
 	void ChangePhase(){
