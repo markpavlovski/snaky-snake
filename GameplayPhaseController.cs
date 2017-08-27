@@ -30,8 +30,9 @@ public class GameplayPhaseController : MonoBehaviour {
 	public Vector2 score = new Vector2 (0,0);
 
 	float maxScore;
-	int maxRound = 10;
+	int maxRound = 6;
 	int i = 0;
+	int winningScore = 3;
 
 
 
@@ -85,7 +86,7 @@ public class GameplayPhaseController : MonoBehaviour {
 			ChangeRoundName ("ROUND " + roundCounter.ToString ());
 			ChangeScoreLabel (score, message);
 
-			if ( maxScore >= 5 || roundCounter > maxRound) {
+			if ( maxScore >= winningScore || roundCounter > maxRound) {
 
 				if (score.x > score.y) {
 					masterController.gameWinnerMessage = "GREEN PLAYER WINS";
